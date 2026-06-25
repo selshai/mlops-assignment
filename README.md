@@ -1,6 +1,24 @@
 # Home assignment: LLM inference + o11y
 
-  
+---
+
+## 📦 Submission
+
+- **Student:** Shai Sela
+- **Nebius ID:** `703003145458`
+- **Write-up:** see [`REPORT.md`](REPORT.md) for the full results (serving config, baseline vs
+  tuned eval, SLO iteration log, agent value, future work).
+- **Deliverables:** `agent/graph.py`, `agent/prompts.py`, `agent/schema.py`,
+  `evals/run_eval.py`, `scripts/start_vllm.sh`,
+  `infra/grafana/provisioning/dashboards/serving.json`, results in `results/`,
+  screenshots in `screenshots/`.
+
+> Run notes: `data/bird/` and the model weights are not bundled (regenerate with
+> `uv sync` + `python scripts/load_data.py`). `.env` carries the local-vLLM runtime config;
+> no API keys are included. `docker-compose.override.yml` adds the Grafana image-renderer
+> (for screenshots) and headlessly provisions the Langfuse project/keys used in Phase 4.
+
+---
 
 ## Legend
 

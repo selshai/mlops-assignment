@@ -53,15 +53,21 @@ def health() -> dict[str, str]:
 
 
 @app.post("/answer", response_model=AnswerResponse)
-def answer(req: AnswerRequest) -> AnswerResponse:
+async def answer(req: AnswerRequest) -> AnswerResponse:
+    # Async endpoint: requests are multiplexed on the event loop instead of
+    # FastAPI's 40-thread sync pool, so sustained concurrency (10 RPS x multi-
+    # second latency = ~50 in flight) no longer saturates the pool and blows up
+    # the tail. The graph's LLM nodes are async (await ainvoke).
     state = AgentState(question=req.question, db_id=req.db)
     config: dict[str, Any] = {
         "callbacks": [_lf_handler] if _lf_handler is not None else [],
         "metadata": req.tags,
     }
     try:
-        final = graph.invoke(state, config=config)
+        final = await graph.ainvoke(state, config=config)
     except Exception as e:  # noqa: BLE001
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
     sql = final.get("sql", "")

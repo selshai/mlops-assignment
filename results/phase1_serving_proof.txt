@@ -1,0 +1,6 @@
+### vLLM serving proof (Phase 1) ###
+Tue Jun 23 18:22:58 UTC 2026
+-- GET /v1/models --
+{"object":"list","data":[{"id":"Qwen/Qwen3-30B-A3B-Instruct-2507","object":"model","created":1782238978,"owned_by":"vllm","root":"Qwen/Qwen3-30B-A3B-Instruct-2507","parent":null,"max_model_len":8192,"permission":[{"id":"modelperm-550558c55d8f4f7ca6022c2c6ff4ea0d","object":"model_permission","created":1782238978,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}
+-- chat completion --
+{"id":"chatcmpl-f5101b4aea49480a9b64f430126bd6f1","object":"chat.completion","created":1782238978,"model":"Qwen/Qwen3-30B-A3B-Instruct-2507","choices":[{"index":0,"message":{"role":"assistant","content":"```sql\nSELECT COUNT(*) AS row_count FROM schools;\n```","refusal":null,"annotations":null,"audio":null,"function_call":null,"tool_calls":[],"reasoning_content":null},"logprobs":null,"finish_reason":"stop","stop_reason":null,"token_ids":null}],"service_tier":null,"system_fingerprint":null,"usage":{"prompt_tokens":17,"total_tokens":31,"completion_tokens":14,"prompt_tokens_details":null},"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null}

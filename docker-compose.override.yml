@@ -1,0 +1,19 @@
+services:
+  grafana:
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8081/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000/
+      GF_LOG_FILTERS: rendering:debug
+  renderer:
+    image: grafana/grafana-image-renderer:latest
+    environment:
+      ENABLE_METRICS: "false"
+  langfuse-web:
+    environment:
+      LANGFUSE_INIT_ORG_ID: course-org
+      LANGFUSE_INIT_PROJECT_ID: course-project
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: pk-lf-1111111111111111
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: sk-lf-2222222222222222
+      LANGFUSE_INIT_USER_EMAIL: shai@example.com
+      LANGFUSE_INIT_USER_PASSWORD: course-password-123
+      LANGFUSE_INIT_USER_NAME: Shai
